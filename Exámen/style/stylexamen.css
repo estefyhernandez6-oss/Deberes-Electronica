@@ -1,0 +1,95 @@
+/* ===================== GENERAL ===================== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #9d4edd; /* Letras lilas llamativas */
+    background: black;
+}
+
+/* Contenedor principal */
+#docContainer {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 900px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+/* Encabezados */
+h1 {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #9d4edd;
+}
+h2 {
+    font-size: 2em;
+    margin-top: 25px;
+    border-bottom: 2px solid #9d4edd;
+    padding-bottom: 5px;
+}
+h3 {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+/* Texto y listas */
+p, li {
+    font-size: 1.3em;
+    line-height: 1.6;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+th, td {
+    border: 1px solid #9d4edd;
+    padding: 10px;
+    text-align: left;
+    font-size: 1.2em;
+}
+th {
+    background-color: #f0e6fa;
+}
+
+/* Botones */
+button {
+    background-color: #9d4edd;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+button:hover {
+    background-color: #7b2cbf;
+}
+
+/* Botón contenedor */
+.btnContainer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Secciones */
+.section {
+    margin-top: 20px;
+}
+
+/* Autor */
+.autor {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 20px;
+}

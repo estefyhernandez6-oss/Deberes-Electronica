@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Práctico – Conversor Numérico</title>
+    <link rel="stylesheet" href="style/stylexamen.css">
+</head>
+<body>
+
+<!-- MATRIX -->
+<canvas id="matrix"></canvas>
+
+<!-- DOCUMENTACIÓN -->
+<div id="docContainer">
+    <div class="docBox">
+        <h1>📘 Informe Examen – Conversor Numérico</h1>
+        <p class="autor">Realizado por: Katherinn Hernandez Arana</p>
+
+        <!-- Descripción -->
+        <section class="section">
+            <h2>Descripción de la práctica</h2>
+            <p>
+                La actividad consistió en desarrollar un <strong>conversor numérico</strong> capaz de convertir números entre los sistemas: binario, octal, decimal y hexadecimal. 
+                La aplicación se realizó en <strong>HTML, CSS y JavaScript</strong> y permite al usuario ingresar un número en un sistema y obtener sus equivalentes en los otros sistemas numéricos.
+            </p>
+        </section>
+
+        <!-- Objetivos -->
+        <section class="section">
+            <h2>Objetivo General </h2>
+            <ul>
+               <li>Desarrollar una aplicación web interactiva capaz de convertir números entre los sistemas numéricos binario, octal, decimal y hexadecimal, aplicando conocimientos de HTML, CSS y JavaScript, y presentando la información de manera clara y funcional para el usuario.</li>
+            </ul>
+            <h2>Objetivo Específico</h2>
+            <ul>
+                <li>Implementar una interfaz amigable que permita al usuario ingresar un número en un sistema numérico y visualizar automáticamente sus equivalentes en los demás sistemas, asegurando la validación de entradas y la correcta conversión de los datos.</li>
+            </ul>
+        </section>
+
+        <!-- Materiales utilizados -->
+        <section class="section">
+            <h2>Materiales utilizados</h2>
+            <ul>
+                <li>Computadora o Laptop</li>
+                <li>Navegador web moderno (Chrome, Edge o Firefox)</li>
+                <li>Editor de código: Visual Studio Code</li>
+                <li>Lenguajes: HTML, CSS y JavaScript</li>
+                <li>Archivos del proyecto: examen.html, ACTIVIDAD1.html, styleExamen.css, styleActividad1.css</li>
+                <li>Conexión a Internet (opcional)</li>
+            </ul>
+        </section>
+
+        <!-- Procedimiento -->
+        <section class="section">
+            <h2>Procedimiento</h2>
+            <ol>
+                <li>Preparar los archivos HTML, CSS y JavaScript del proyecto.</li>
+                <li>Diseñar la interfaz del conversor con campos de entrada y salida para cada sistema numérico.</li>
+                <li>Implementar la lógica de conversión automática en JavaScript.</li>
+                <li>Agregar validaciones para asegurar que el usuario solo ingrese valores correctos.</li>
+                <li>Realizar pruebas con diferentes números y verificar resultados correctos.</li>
+                <li>Redactar la documentación detallando descripción, objetivos, materiales y componentes.</li>
+                <li>Revisar la presentación final para asegurar claridad y estilo llamativo.</li>
+            </ol>
+        </section>
+
+        <!-- Descripción de cada componente -->
+        <section class="section">
+            <h2>Descripción de cada componente</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Función</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Campo de entrada</td>
+                        <td>Permite ingresar el número en cualquier sistema numérico.</td>
+                    </tr>
+                    <tr>
+                        <td>Botón Convertir</td>
+                        <td>Convierte automáticamente el número a los otros sistemas.</td>
+                    </tr>
+                    <tr>
+                        <td>Campos de salida</td>
+                        <td>Muestra los resultados en binario, octal, decimal y hexadecimal.</td>
+                    </tr>
+                    <tr>
+                        <td>Validaciones</td>
+                        <td>Asegura que solo se ingresen valores válidos según el sistema seleccionado.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Botón salir -->
+        <div class="btnContainer">
+            <button id="btnSalirDoc">Salir de Documentación</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// MATRIX ANIMADO
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "01";
+const fontSize = 14;
+let columns = canvas.width / fontSize;
+let drops = Array.from({length: columns}, () => 1);
+
+function drawMatrix(){
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "#9d4edd"; // Color lila para letras matrix
+    ctx.font = fontSize + "px monospace";
+    drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i*fontSize, y*fontSize);
+        drops[i] = y*fontSize > canvas.height && Math.random() > 0.975 ? 0 : y+1;
+    });
+}
+setInterval(drawMatrix,33);
+
+window.addEventListener("resize", ()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = canvas.width / fontSize;
+    drops = Array.from({length: columns}, () => 1);
+});
+
+// BOTÓN SALIR DE DOCUMENTACIÓN
+const btnSalir = document.getElementById('btnSalirDoc');
+const docContainer = document.getElementById('docContainer');
+
+btnSalir.addEventListener('click', ()=>{
+    docContainer.style.display = 'none';
+});
+</script>
+
+</body>
+</html>
