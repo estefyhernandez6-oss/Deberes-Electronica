@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portada</title>
+    <link rel="stylesheet" href="style/styleIndex.css">
+</head>
+<body>
+
+<!-- MATRIX -->
+<canvas id="matrix"></canvas>
+
+<!-- PARTICULAS -->
+<div class="particles"></div>
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="spinner"></div>
+</div>
+
+<!-- TARJETA -->
+<div class="card">
+    <h1>Exámen Práctico</h1>
+    <h3>Proyecto Final</h3>
+    <p>Conversión entre Binario, Octal, Decimal y Hexadecimal</p>
+    <a href="ACTIVIDAD1.html" class="boton" onclick="entrar(event)">INGRESAR</a>
+</div>
+
+<!-- SONIDO -->
+<audio id="clickSound">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+</audio>
+
+<!-- SCRIPT GENERAL -->
+<script>
+
+// PARTICULAS
+const particlesContainer = document.querySelector('.particles');
+
+for(let i=0; i<20; i++){
+    let span = document.createElement('span');
+    span.style.left = Math.random()*100 + "%";
+    span.style.animationDuration = (15 + Math.random()*15) + "s";
+    span.style.width = span.style.height = (4 + Math.random()*6) + "px";
+    particlesContainer.appendChild(span);
+}
+
+// LUZ MOUSE
+document.addEventListener("mousemove", e=>{
+    document.body.style.setProperty('--x', e.clientX + 'px');
+    document.body.style.setProperty('--y', e.clientY + 'px');
+});
+
+// MATRIX
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "01";
+const fontSize = 14;
+let columns = canvas.width / fontSize;
+let drops = [];
+
+for(let x = 0; x < columns; x++){
+    drops[x] = 1;
+}
+
+function draw(){
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = "#9d4edd";
+    ctx.font = fontSize + "px monospace";
+
+    for(let i = 0; i < drops.length; i++){
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+        if(drops[i]*fontSize > canvas.height && Math.random() > 0.975){
+            drops[i] = 0;
+        }
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 33);
+
+window.addEventListener("resize", ()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    columns = canvas.width / fontSize;
+    drops = [];
+
+    for(let x = 0; x < columns; x++){
+        drops[x] = 1;
+    }
+});
+
+// TRANSICIÓN AL ENTRAR
+function entrar(e){
+    e.preventDefault();
+
+    const sound = document.getElementById("clickSound");
+    sound.play();
+
+    const card = document.querySelector('.card');
+
+    card.style.transition = "0.8s";
+    card.style.transform = "scale(1.2)";
+    card.style.opacity = "0";
+
+    document.body.style.transition = "1s";
+    document.body.style.opacity = "0";
+
+    setTimeout(()=>{
+        window.location.href="ACTIVIDAD1.html";
+    },800);
+}
+
+</script>
+
+</body>
+</html>
